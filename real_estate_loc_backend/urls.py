@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('api/listings/', listing_api_views.ListingList.as_view()),
+                  path('api/listings/create/', listing_api_views.ListingCreate.as_view()),
                   path(r'api-auth/', include('djoser.urls')),
                   path(r'api-auth/', include('djoser.urls.authtoken')),
               ] \
