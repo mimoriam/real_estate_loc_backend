@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
 from listings.api import views as listing_api_views
+from users.api import views as users_api_views
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,6 +26,11 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('api/listings/', listing_api_views.ListingList.as_view()),
                   path('api/listings/create/', listing_api_views.ListingCreate.as_view()),
+
+                  path('api/profiles/', users_api_views.ProfileList.as_view()),
+                  path('api/profiles/<int:seller>/', users_api_views.ProfileDetail.as_view()),
+                  path('api/profiles/<int:seller>/update/', users_api_views.ProfileUpdate.as_view()),
+
                   path(r'api-auth/', include('djoser.urls')),
                   path(r'api-auth/', include('djoser.urls.authtoken')),
               ] \
