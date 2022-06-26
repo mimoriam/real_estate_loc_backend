@@ -6,7 +6,22 @@ from django.contrib.gis.db import models
 
 from django.contrib.auth import get_user_model
 
+import PIL
+from io import BytesIO
+from django.core.files import File
+
 User = get_user_model()
+
+
+def compress(picture):
+    if picture:
+        pic = PIL.Image.open(picture)
+        buf = BytesIO()
+        pic.save(buf, 'JPEG', quality=50)
+        new_pic = File(buf, name=picture.name)
+        return new_pic
+    else:
+        return None
 
 
 class Listing(models.Model):
@@ -63,6 +78,12 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        new_pic = compress(self.picture)
+        self.picture = new_pic  # Do these two lines for multiple images if exist in more fields
+
+        super().save(*args, **kwargs)
 
 
 class PointsOfInterest(models.Model):
