@@ -30,6 +30,7 @@ from drf_spectacular.views import (
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('api/listings/', listing_api_views.ListingList.as_view()),
+                  path('api/listings/<int:pk>/', listing_api_views.ListingDetail.as_view()),
                   path('api/listings/create/', listing_api_views.ListingCreate.as_view()),
 
                   path('api/profiles/', users_api_views.ProfileList.as_view()),
