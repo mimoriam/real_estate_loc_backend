@@ -9,7 +9,7 @@ class ListingsForm(forms.ModelForm):
         fields = ['title', 'description', 'area', 'borrow', 'listing_type', 'property_status', 'price',
                   'rental_frequency', 'rooms', 'furnished', 'pool', 'elevator', 'cctv', 'parking', 'date_posted',
                   'location',
-                  'latitude', 'longitude']
+                  'latitude', 'longitude', 'picture']
 
     latitude = forms.FloatField()
     longitude = forms.FloatField()
@@ -23,7 +23,7 @@ class ListingsForm(forms.ModelForm):
         data['location'] = Point(latitude, longitude, srid=4326)
         return data
 
-    def __int__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         location = self.initial.get('location')

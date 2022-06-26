@@ -49,5 +49,7 @@ class Listing(models.Model):
 
     location = models.PointField(blank=True, null=True, srid=4326)
 
+    picture = models.ImageField(blank=True, null=True, upload_to='pictures/%Y/%m/')
+
     def __str__(self):
         return self.title
