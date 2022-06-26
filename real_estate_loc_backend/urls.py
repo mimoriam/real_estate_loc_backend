@@ -22,6 +22,11 @@ from users.api import views as users_api_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+)
+
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('api/listings/', listing_api_views.ListingList.as_view()),
@@ -33,6 +38,9 @@ urlpatterns = [
 
                   path(r'api-auth/', include('djoser.urls')),
                   path(r'api-auth/', include('djoser.urls.authtoken')),
+
+                  path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
+                  path('api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'), name='api-docs')
               ] \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

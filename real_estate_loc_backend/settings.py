@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     'rest_framework.authtoken',
+    'drf_spectacular',
 
     # Local:
     'listings.apps.ListingsConfig',
@@ -151,6 +152,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 DJOSER = {
