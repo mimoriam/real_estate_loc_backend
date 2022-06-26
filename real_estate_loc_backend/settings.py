@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-no%5^_1dp==m!#yab2_4mc=_$8d69_z7ex)f9x(87-t3qhxqcn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -156,6 +156,7 @@ REST_FRAMEWORK = {
 }
 
 DJOSER = {
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
     'USER_CREATE_PASSWORD_RETYPE': True,
-    'SEND_ACTIVATION_EMAIL': False
+    'SEND_ACTIVATION_EMAIL': True
 }
